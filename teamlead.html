@@ -150,7 +150,7 @@
                     />
                   </div>
 
-                  <div class="col-md-12">
+                  <!-- <div class="col-md-12">
                     <input
                       type="email"
                       class="form-control"
@@ -159,7 +159,7 @@
                       placeholder="Your Email"
                       required
                     />
-                  </div>
+                  </div> -->
                    <div class="col-md-12">
                     <input
                       type="text"
@@ -275,24 +275,7 @@
     <script src="assets/js/main.js"></script>
     <script>
       const form = document.getElementById("form");
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const phone = document.getElementById("phone").value;
-        const teamname = document.getElementById("team").value;
-        const college =document.getElementById('college').value;
-
-        const data = {
-          name,
-          email,
-          phone,
-          teamname,
-          college
-        };
-        
-
-        function getCookie(cname) {
+      function getCookie(cname) {
           let name = cname + "=";
           let decodedCookie = decodeURIComponent(document.cookie);
           let ca = decodedCookie.split(";");
@@ -307,6 +290,24 @@
           }
           return "";
         }
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name").value;
+        const email = getCookie("user");
+        const phone = document.getElementById("phone").value;
+        const teamname = document.getElementById("team").value;
+        const college =document.getElementById('college').value;
+
+        const data = {
+          name,
+          email,
+          phone,
+          teamname,
+          college
+        };
+        
+
+        
         axios.defaults.headers.common = {'Authorization': `bearer ${getCookie("token")}`}
         const res = await axios.post(
           "http://localhost:3000/api/register/",
