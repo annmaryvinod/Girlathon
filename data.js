@@ -47,3 +47,4 @@ document.getElementById('form').addEventListener('submit', (e) => {
 function  getId(id){
     return document.getElementById(id).value;
 }
+
